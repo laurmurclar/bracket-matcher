@@ -30,8 +30,10 @@ class BracketMatcher
 
     previousCharacter = previousCharacters.slice(-1)
 
-    hasWordAfterCursor = /\w/.test(nextCharacter)
-    hasWordBeforeCursor = /\w/.test(previousCharacter)
+    # any character which is not whitespace, a bracket or a parenthesis
+    wordPattern = /[^\s\(\)\{\}\[\]]/
+    hasWordAfterCursor = wordPattern.test(nextCharacter)
+    hasWordBeforeCursor = wordPattern.test(previousCharacter)
     hasQuoteBeforeCursor = @isQuote(previousCharacter) and previousCharacter is text[0]
     # Lone escape character - odd number of backslashes before cursor
     hasEscapeCharacterBeforeCursor = previousCharacters.match(/(\\+)$/)?[1].length % 2 is 1

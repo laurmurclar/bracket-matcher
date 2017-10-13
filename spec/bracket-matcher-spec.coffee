@@ -1124,10 +1124,10 @@ describe "bracket matching", ->
 
       describe "when a non word character is before the cursor", ->
         it "automatically inserts the closing quote", ->
-          editor.buffer.setText("ab@")
+          editor.buffer.setText("ab ")
           editor.moveToEndOfLine()
           editor.insertText '"'
-          expect(editor.getText()).toBe 'ab@""'
+          expect(editor.getText()).toBe 'ab ""'
           expect(editor.getCursorBufferPosition()).toEqual [0, 4]
 
       describe "when the cursor is on an empty line", ->
